@@ -367,7 +367,7 @@ eda_activations:
     rulebook: eda-rulebook-dynatrace.yml
     project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
-    extra_vars: "dynatrace_api_url: {{ dynatrace_api_url }}\ndynatrace_api_token: {{ dynatrace_api_token }}"
+    extra_vars: "dynatrace_api_url: {{ dynatrace_url }}\ndynatrace_api_token: {{ dynatrace_token }}"
     credentials: 
       - "AAP2 Credentials"
 
@@ -385,6 +385,7 @@ eda_activations:
     decision_env: "kubealex-eda"
     credentials: 
       - "AAP2 Credentials"
+
   - name: eda-webhook
     rulebook: eda-rulebook-webhook.yml
     project_name: "RH1 Demo Project"
