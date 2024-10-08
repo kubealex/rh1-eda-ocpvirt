@@ -341,7 +341,7 @@ aap2_workflows:
 
 ####### EDA CONTROLLER VARIABLES ########
 eda_projects:
-  - name: "EDA Demo Project"
+  - name: "RH1 Demo Project"
     git_url: https://github.com/kubealex/rh1-eda-ocpvirt
     description: "Demo project to show EDA in action"
 eda_decision_envs:
@@ -358,14 +358,14 @@ eda_credentials:
 eda_activations:
   - name: eda-alertmanager
     rulebook: eda-rulebook-alertmanager.yml
-    project_name: "EDA Demo Project"
+    project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
     credentials: 
       - "AAP2 Credentials"
 
   - name: eda-dynatrace
     rulebook: eda-rulebook-dynatrace.yml
-    project_name: "EDA Demo Project"
+    project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
     extra_vars: "dynatrace_api_url: {{ dynatrace_api_url }}\ndynatrace_api_token: {{ dynatrace_api_token }}"
     credentials: 
@@ -374,27 +374,27 @@ eda_activations:
   - name: eda-kafka
     rulebook: eda-rulebook-kafka.yml
     extra_vars: "kafka_host: 192.168.230.1"
-    project_name: "EDA Demo Project"
+    project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
     credentials: 
       - "AAP2 Credentials"
 
   - name: eda-insights
     rulebook: eda-rulebook-insights.yml
-    project_name: "EDA Demo Project"
+    project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
     credentials: 
       - "AAP2 Credentials"
   - name: eda-webhook
     rulebook: eda-rulebook-webhook.yml
-    project_name: "EDA Demo Project"
+    project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
     credentials: 
       - "AAP2 Credentials"
 
   - name: eda-mqtt
     rulebook: eda-rulebook-mqtt.yml
-    project_name: "EDA Demo Project"
+    project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
     extra_vars: "mosquitto_host: 192.168.230.1\nmosquitto_port: 1883"
     credentials: 
