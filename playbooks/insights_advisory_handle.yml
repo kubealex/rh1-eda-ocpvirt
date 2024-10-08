@@ -124,7 +124,7 @@
 
         - name: EDA | Insights | Update Insights project and fetch updates
           ansible.controller.project_update:
-            project: "DevConf Demo - Insights"
+            project: "RH1 Demo - Insights"
             organization: "Default"
             controller_host: "{{ lookup('env', 'CONTROLLER_HOST') }}"
             controller_username: "{{ lookup('env', 'CONTROLLER_USERNAME') }}"
@@ -140,11 +140,11 @@
             validate_certs: false
             job_type: "run"
             organization: "Default"
-            inventory: "DevConf Demo - Insights Inventory"
-            project: "DevConf Demo - Insights"
+            inventory: "RH1 Demo - Insights Inventory"
+            project: "RH1 Demo - Insights"
             playbook: "{{ job_template_playbook_reboot }}"
             credentials:
-              - "DevConf Demo - Linux Credentials"
+              - "RH1 Demo - Linux Credentials"
             state: "present"
 
         - name: EDA | Insights | Create workflow template for approval
@@ -155,7 +155,7 @@
             validate_certs: false
             organization: Default
             name: "[Insights] {{ hostvars[inventory_hostname].ansible_host }}  CVE remediation workflow"
-            inventory: "DevConf Demo - Insights Inventory"
+            inventory: "RH1 Demo - Insights Inventory"
 
         - name: EDA | Insights | Add approval node for workflow
           ansible.controller.workflow_job_template_node:
@@ -249,7 +249,7 @@
 
         - name: EDA | Insights | Update Insights project and fetch updates
           ansible.controller.project_update:
-            project: "DevConf Demo - Insights"
+            project: "RH1 Demo - Insights"
             organization: "Default"
             controller_host: "{{ lookup('env', 'CONTROLLER_HOST') }}"
             controller_username: "{{ lookup('env', 'CONTROLLER_USERNAME') }}"
@@ -265,11 +265,11 @@
             validate_certs: false
             job_type: "run"
             organization: "Default"
-            inventory: "DevConf Demo - Insights Inventory"
-            project: "DevConf Demo - Insights"
+            inventory: "RH1 Demo - Insights Inventory"
+            project: "RH1 Demo - Insights"
             playbook: "{{ job_template_playbook }}"
             credentials:
-              - "DevConf Demo - Linux Credentials"
+              - "RH1 Demo - Linux Credentials"
             state: "present"
 
         - name: EDA | Insights | Create workflow template for approval
@@ -280,7 +280,7 @@
             validate_certs: false
             organization: Default
             name: "[Insights] {{ hostvars[inventory_hostname].ansible_host }}  CVE remediation workflow"
-            inventory: "DevConf Demo - Insights Inventory"
+            inventory: "RH1 Demo - Insights Inventory"
 
         - name: EDA | Insights | Add remediation node for workflow
           ansible.controller.workflow_job_template_node:
