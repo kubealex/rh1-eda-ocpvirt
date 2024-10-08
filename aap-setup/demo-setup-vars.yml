@@ -371,14 +371,6 @@ eda_activations:
     credentials: 
       - "AAP2 Credentials"
 
-  - name: eda-kafka
-    rulebook: eda-rulebook-kafka.yml
-    extra_vars: "kafka_host: 192.168.230.1"
-    project_name: "RH1 Demo Project"
-    decision_env: "kubealex-eda"
-    credentials: 
-      - "AAP2 Credentials"
-
   - name: eda-insights
     rulebook: eda-rulebook-insights.yml
     project_name: "RH1 Demo Project"
@@ -392,12 +384,3 @@ eda_activations:
     decision_env: "kubealex-eda"
     credentials: 
       - "AAP2 Credentials"
-
-  - name: eda-mqtt
-    rulebook: eda-rulebook-mqtt.yml
-    project_name: "RH1 Demo Project"
-    decision_env: "kubealex-eda"
-    extra_vars: "mosquitto_host: 192.168.230.1\nmosquitto_port: 1883"
-    credentials: 
-      - "AAP2 Credentials"
-
