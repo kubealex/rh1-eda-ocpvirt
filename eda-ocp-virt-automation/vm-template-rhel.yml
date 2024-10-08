@@ -2,7 +2,7 @@ kind: "Template"
 apiVersion: "template.openshift.io/v1"
 metadata:
   name: "rhel9-server"
-  namespace: "devconf-demo"
+  namespace: "rh1-demo"
   labels:
     app.kubernetes.io/part-of: "hyperconverged-cluster"
     template.kubevirt.io/version: "v0.27.0"
@@ -123,7 +123,7 @@ objects:
           networks:
             - name: "bridged-network"
               multus:
-                networkName: "devconf-demo/br1"
+                networkName: "rh1-demo/br1"
             - name: "default"
               pod: {}
           terminationGracePeriodSeconds: 180

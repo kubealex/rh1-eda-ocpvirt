@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
   name: eda-alertmanager-receiver
-  namespace: "devconf-demo"
+  namespace: "rh1-demo"
   labels:
     alertmanagerConfig: eda-alertmanager-receiver
 spec:

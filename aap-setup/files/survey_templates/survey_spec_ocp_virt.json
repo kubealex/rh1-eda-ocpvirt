@@ -18,7 +18,7 @@
       "type": "text",
       "variable": "ocp_vm_namespace",
       "index": 1,
-      "default": "devconf-demo"
+      "default": "rh1-demo"
     },
     {
       "question_name": "VM Template to use",

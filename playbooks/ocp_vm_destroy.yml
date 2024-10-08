@@ -8,7 +8,7 @@
       validate_certs: "{{ ocp_api_verify_tls | default(false, true) }}"
   vars:
     vm_name: "{{ ocp_vm_name | default('rhel9-vm', true) }}"
-    vm_namespace: "{{ ocp_vm_namespace | default('devconf-demo', true) }}"
+    vm_namespace: "{{ ocp_vm_namespace | default('rh1-demo', true) }}"
 
   tasks:
     - name: OCP | Login to OCP cluster

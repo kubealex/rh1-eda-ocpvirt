@@ -4,7 +4,7 @@ metadata:
   annotations:
     k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
   name: br1
-  namespace: "devconf-demo"
+  namespace: "rh1-demo"
 spec:
   config: >-
     {"name":"br1","type":"cnv-bridge","cniVersion":"0.3.1","bridge":"br1","macspoofchk":true}

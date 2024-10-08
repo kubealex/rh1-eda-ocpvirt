@@ -9,6 +9,7 @@ aap2_projects:
   - name: "RH1 Demo"
     scm_url: "https://github.com/kubealex/rh1-eda-ocpvirt"
     scm_branch: "main"
+    default_ee: "RH1 Demo EE"
   # ------------------------------------
   # ------------------------------------
 
