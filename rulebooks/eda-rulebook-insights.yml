@@ -20,3 +20,9 @@
                 insights_advisories: "{{ event.payload.events }}"
                 insights_advisories_context: "{{ event.payload.context }}"
                 target_hosts: "{{ event.payload.context.display_name }}"
+
+    - name: EDA | Insights | Debug generic event
+      condition: event.payload is defined
+      actions:
+        - debug:
+        
