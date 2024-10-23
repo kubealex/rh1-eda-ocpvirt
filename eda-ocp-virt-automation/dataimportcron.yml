@@ -1,7 +1,7 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataImportCron
 metadata:
-  name: rhel9-insights-import-cron-swqukz
+  name: rhel9-insights-import-cron
   namespace: rh1-demo
 spec:
   garbageCollect: Outdated
