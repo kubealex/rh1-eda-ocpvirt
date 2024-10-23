@@ -1,0 +1,22 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataImportCron
+metadata:
+  name: rhel9-insights-import-cron-swqukz
+  namespace: rh1-demo
+spec:
+  garbageCollect: Outdated
+  importsToKeep: 3
+  managedDataSource: rhel9-insights
+  schedule: '*/2 * * * *'
+  template:
+    metadata: {}
+    spec:
+      source:
+        registry:
+          url: 'docker://service-vm.rh-lab.labs:3000/gitea/rhel9-vm:insights'
+      storage:
+        resources:
+          requests:
+            storage: 30Gi
+        storageClassName: ocs-storagecluster-ceph-rbd-virtualization
+    status: {}
