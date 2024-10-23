@@ -43,7 +43,7 @@
             spec:
               sourceRef:
                 kind: DataSource
-                name: "{{ vm_name }}"
+                name: "rhel9-insights"
                 namespace: openshift-virtualization-os-images
               storage:
                 resources: {}
@@ -56,7 +56,7 @@
                     storage: "5Gi"
               preallocation: false
               source:
-                blank: {}                
+                blank: {}
         spec:
           domain:
             resources:
