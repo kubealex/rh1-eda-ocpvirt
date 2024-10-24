@@ -9,7 +9,7 @@ spec:
   receivers:
     - name: EDA
       webhookConfigs:
-        - url: "http://eda.rh-lab.labs:5001/endpoint"
+        - url: "http://aap.rh-lab.labs:5001/endpoint"
   route:
     groupBy: ["namespace"]
     groupInterval: 2m

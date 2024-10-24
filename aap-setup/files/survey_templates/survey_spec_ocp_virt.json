@@ -57,7 +57,7 @@
       "type": "text",
       "variable": "ocp_webhook_url",
       "index": 5,
-      "default": "http://eda.rh-lab.labs:5000/endpoint"
+      "default": "http://aap.rh-lab.labs:5000/endpoint"
     },
     {
       "question_name": "URL to QCOW image",
