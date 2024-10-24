@@ -44,7 +44,7 @@
               sourceRef:
                 kind: DataSource
                 name: "rhel9-insights"
-                namespace: openshift-virtualization-os-images
+                namespace: rh1-demo
               storage:
                 resources: {}
           - metadata:

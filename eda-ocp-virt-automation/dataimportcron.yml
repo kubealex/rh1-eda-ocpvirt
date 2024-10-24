@@ -14,6 +14,7 @@ spec:
       source:
         registry:
           url: 'docker://service-vm.rh-lab.labs:3000/gitea/rhel9-vm:insights'
+          certConfigMap: registry-cert
       storage:
         resources:
           requests:
