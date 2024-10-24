@@ -10,7 +10,7 @@
     vm_name: "{{ ocp_vm_name | default('rhel9-vm', true) }}"
     vm_namespace: "{{ ocp_vm_namespace | default('rh1-demo', true) }}"
     vm_template: "{{ ocp_vm_template | default('rhel9-server', true) }}"
-    vm_cpu_count: "{{ ocp_vm_cpu | int |  default(2, true)}}"
+    vm_cpu_count: "{{ ocp_vm_cpu | default(2, true) | int }}"
     vm_mem_count: "{{ ocp_vm_mem | default('4Gi', true) }}"
     vm_flavour: "{{ ocp_vm_flavour | default('RHEL', true) }}"
     vm_image_url: "{{ ocp_rhel_image }}"
