@@ -31,8 +31,8 @@
 
     - name: Test type
       ansible.builtin.debug:
-        msg: "type of var is {{ vm_cpu_count | type_debug }}"
-        
+        msg: "type of var is {{ vm_cpu_count | int | type_debug }}"
+
     - name: RH1 Demo | Create a VirtualMachine
       redhat.openshift_virtualization.kubevirt_vm:
         host: "{{ ocp_api_url | default(lookup('env', 'K8S_AUTH_HOST'), true) }}"
