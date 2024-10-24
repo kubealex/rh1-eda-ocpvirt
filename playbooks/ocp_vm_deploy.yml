@@ -76,6 +76,9 @@
                     bus: "virtio"
                   name: "cloudinitdisk"
                   bootOrder: 2
+                - name: "additional-disk"
+                  disk:
+                    bus: "virtio"                  
               interfaces:
                 - name: "bridged-network"
                   model: "virtio"
