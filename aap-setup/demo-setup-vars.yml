@@ -23,6 +23,7 @@ aap2_projects:
 aap2_execution_envs:
   - ee_name: "RH1 Demo EE"
     ee_image: "{{ aap2_ee }}"
+    ee_pull_policy: "always"
   # ------------------------------------
   # ------------------------------------
 
