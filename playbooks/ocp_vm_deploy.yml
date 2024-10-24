@@ -60,7 +60,7 @@
         spec:
           domain:
             cpu:
-              cores: "{{ vvm_cpu_count }}"
+              cores: "{{ vm_cpu_count }}"
               sockets: 1
               threads: 1
             resources:
