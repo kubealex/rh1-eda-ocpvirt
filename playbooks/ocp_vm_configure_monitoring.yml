@@ -51,7 +51,7 @@
           apiVersion: monitoring.coreos.com/v1
           kind: ServiceMonitor
           metadata:
-            name: "{{ vm_name|  replace('.', '-') }}-metrics"
+            name: "{{ vm_name | replace('.', '-') }}-metrics"
           spec:
             endpoints:
               - interval: 30s

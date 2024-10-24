@@ -143,3 +143,10 @@
                     - hostnamectl set-hostname $(hostname -f)
                     - /bin/bash /tmp/send_webhook.sh
                     - systemctl restart NetworkManager
+                networkData: |
+                  network:
+                    version: 1
+                    config:
+                      - type: route
+                        destination: 10.0.0.0/8
+                        gateway: 10.0.2.1
