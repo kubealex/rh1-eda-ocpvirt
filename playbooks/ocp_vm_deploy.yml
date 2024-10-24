@@ -14,6 +14,8 @@
     vm_mem_count: "{{ ocp_vm_mem | default('4Gi', true) }}"
     vm_flavour: "{{ ocp_vm_flavour | default('RHEL', true) }}"
     vm_image_url: "{{ ocp_rhel_image }}"
+  environment:
+    ANSIBLE_JINJA2_NATIVE: true
   tasks:
     - name: OCP | Set image source
       ansible.builtin.set_fact:
