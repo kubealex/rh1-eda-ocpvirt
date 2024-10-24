@@ -29,6 +29,10 @@
             ocp_api_key: "{{ _openshift_auth_results.openshift_auth.api_key }}"
 
 
+    - name: Test type
+      ansible.builtin.debug:
+        msg: "type of var is {{ vm_cpu_count | type_debug }}"
+        
     - name: RH1 Demo | Create a VirtualMachine
       redhat.openshift_virtualization.kubevirt_vm:
         host: "{{ ocp_api_url | default(lookup('env', 'K8S_AUTH_HOST'), true) }}"
@@ -60,7 +64,7 @@
         spec:
           domain:
             cpu:
-              cores: {{ vm_cpu_count }}
+              cores: "{{ vm_cpu_count }}"
               sockets: 1
               threads: 1
             resources:
