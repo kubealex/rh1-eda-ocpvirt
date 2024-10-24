@@ -10,7 +10,7 @@
     vm_name: "{{ ocp_vm_name | default('rhel9-vm', true) }}"
     vm_namespace: "{{ ocp_vm_namespace | default('rh1-demo', true) }}"
     vm_template: "{{ ocp_vm_template | default('rhel9-server', true) }}"
-    vm_cpu_count: "{{ ocp_vm_cpu | default(2, true) | int }}"
+    vm_cpu_count: "{{ ocp_vm_cpu | default(2, true) }}"
     vm_mem_count: "{{ ocp_vm_mem | default('4Gi', true) }}"
     vm_flavour: "{{ ocp_vm_flavour | default('RHEL', true) }}"
     vm_image_url: "{{ ocp_rhel_image }}"
@@ -31,7 +31,7 @@
 
     - name: Test type
       ansible.builtin.debug:
-        msg: "type of var is {{ vm_cpu_count | int | type_debug }}"
+        msg: "type of var is {{ vm_cpu_count | int | type_debug }} and the value is {{ vm_cpu_count | int }} "
 
     - name: RH1 Demo | Create a VirtualMachine
       redhat.openshift_virtualization.kubevirt_vm:
@@ -64,7 +64,7 @@
         spec:
           domain:
             cpu:
-              cores: "{{ vm_cpu_count }}"
+              cores: "{{ vm_cpu_count | int }}"
               sockets: 1
               threads: 1
             resources:
