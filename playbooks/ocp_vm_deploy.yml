@@ -59,6 +59,10 @@
                 blank: {}
         spec:
           domain:
+            cpu:
+              cores: "{{ vvm_cpu_count }}"
+              sockets: 1
+              threads: 1
             resources:
               requests:
                 memory: "{{ vm_mem_count }}"
