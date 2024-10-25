@@ -26,6 +26,7 @@ dependencies:
       - kubernetes.core
       - redhat.openshift
       - redhat.insights
+      - servicenow.itsm
       - name: /home/runner/dynatrace-oneagent-1.1.0.tar.gz
         type: file
 
