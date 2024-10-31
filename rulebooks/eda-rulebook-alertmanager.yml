@@ -43,7 +43,7 @@
                 alertStatus: "{{ events.m_1.payload.status }}"
                 alerts: "{{ events.m_1.payload.alerts }}"
 
-    - name: EDA | AlertManager | Handle OCPVirtLowDisk alert from OCP
+    - name: EDA | AlertManager | Handle OCPVirtVMNodePressure alert from OCP
       condition: event.payload.status == "firing" and event.payload.commonLabels.source == "ocp" and event.payload.commonLabels.alertname == "OCPVirtVMNodePressure"
       actions:
         - debug:
