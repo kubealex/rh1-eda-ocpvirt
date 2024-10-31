@@ -21,6 +21,8 @@
 
     - name: OCP | Create the PrometheusRule for the VM disk monitoring
       redhat.openshift.k8s:
+        host: "{{ ocp_api_url | default(lookup('env', 'K8S_AUTH_HOST'), true) }}"
+        validate_certs: "{{ ocp_api_verify_tls | default(false, true) }}"
         api_key: "{{ ocp_api_key }}"
         namespace: "{{ item.labels.namespace }}"
         definition:
