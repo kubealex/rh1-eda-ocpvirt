@@ -63,7 +63,7 @@
         wait: true
         apply: true
 
-    - name: OCP | Create the PrometheusRule for the VM
+    - name: OCP | Create the PrometheusRule for the VM disk monitoring
       redhat.openshift.k8s:
         api_key: "{{ ocp_api_key }}"
         namespace: "{{ vm_namespace }}"
@@ -80,6 +80,32 @@
                 rules:
                   - alert: OCPVirtLowDisk
                     expr: node_filesystem_avail_bytes{endpoint='metrics'} * on(instance) group_left(nodename) node_uname_info  < 50000
+                    for: 5m
+                    labels:
+                      severity: critical
+                      source: ocp
+                    annotations:
+                      message: !unsafe "Filesystem {{ $labels.device }} on {{ $labels.nodename }} is full"
+        wait: true
+        apply: true
+
+    - name: OCP | Create the PrometheusRule for the Cluster CPU monitoring for migration
+      redhat.openshift.k8s:
+        api_key: "{{ ocp_api_key }}"
+        namespace: "{{ vm_namespace }}"
+        definition:
+          apiVersion: monitoring.coreos.com/v1
+          kind: PrometheusRule
+          metadata:
+            labels:
+              test: ocpvirt
+            name: vm-node-cpu-pressure
+          spec:
+            groups:
+              - name: ocpvirt.rules
+                rules:
+                  - alert: OCPVirtVMNodePressure
+                    expr: round((kube_pod_info{created_by_kind='VirtualMachineInstance'} * on(pod) group_left(nodename) node_uname_info) * on(node) group_left(nodename) label_replace(instance:node_cpu_utilisation:rate1m, "node", "$1", "instance", "(.*)"), 0.1) > 0.7
                     for: 5m
                     labels:
                       severity: critical
