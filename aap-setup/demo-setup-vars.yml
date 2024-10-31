@@ -247,17 +247,16 @@ aap2_templates:
     aap2_template_playbook: playbooks/alertmanager_ocp_ocpvirtvmnodepressure_report.yml
     aap2_template_inventory: RH1 Demo - SCM Inventory
     aap2_template_ask_vars: true
-    aap2_template_credentials: "RH1 Demo - Linux Credentials"
+    aap2_template_credentials: "RH1 Demo - ServiceNow Credentials"
     aap2_template_project: RH1 Demo
   # ------------------------------------
-  - aap2_template_name: "[EDA][Alertmanager][OCP] - Resolve OCPVirtLowDisk alert"
+  - aap2_template_name: "[EDA][Alertmanager][OCP] - Resolve OCPVirtVMNodePressure alert"
     aap2_template_playbook: playbooks/alertmanager_ocp_ocpvirtvmnodepressure_fix.yml
     aap2_template_inventory: RH1 Demo - SCM Inventory
     aap2_template_ask_vars: true
     aap2_template_credentials: "RH1 Demo - OCP Credentials"
     aap2_template_project: RH1 Demo
   # ------------------------------------
-
 
   # ------------------------------------
   - aap2_template_name: "[EDA][Dynatrace] Open SNOW incident for problem"
@@ -352,8 +351,10 @@ aap2_workflows:
         nodes_on_success:
           - ocp-configure-monitoring
         node_job_template: "[EDA][OCP] Deploy VM on OCP"
+        approval: false
       - node_name: ocp-configure-monitoring
         node_job_template: "[EDA][OCP] VM - Configure monitoring"
+        approval: false
 
 ####### EDA CONTROLLER VARIABLES ########
 eda_projects:
