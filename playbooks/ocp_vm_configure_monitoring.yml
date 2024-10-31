@@ -105,7 +105,7 @@
               - name: ocpvirt.rules
                 rules:
                   - alert: OCPVirtVMNodePressure
-                    expr: label_replace(instance:node_cpu_utilisation:rate1m, "node", "$1", "instance", "(.*)") * on (node) group_right (nodename) kube_pod_info{created_by_kind="VirtualMachineInstance",namespace="rh1-demo"} > 0.9
+                    expr: label_replace(instance:node_cpu_utilisation:rate1m, "node", "$1", "instance", "(.*)") * on (node) group_right (nodename) kube_pod_info{created_by_kind="VirtualMachineInstance",namespace="rh1-demo"} > 0.7
                     for: 1m
                     labels:
                       severity: critical
