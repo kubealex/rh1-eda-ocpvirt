@@ -1,6 +1,6 @@
 ---
 - name: EDA | Alertmanager | OCP | Resolve CPU Pressure on node
-  hosts: "{{ target_hosts | default('rhel_demo_servers', true) }}"
+  hosts: localhost
   module_defaults:
     group/redhat.openshift.openshift:
       host: "{{ ocp_api_url | default(lookup('env', 'K8S_AUTH_HOST'), true) }}"
