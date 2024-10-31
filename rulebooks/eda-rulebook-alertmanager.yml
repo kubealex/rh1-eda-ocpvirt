@@ -42,3 +42,41 @@
                 ticket_number: "{{ events.m_0.incident_number }}"
                 alertStatus: "{{ events.m_1.payload.status }}"
                 alerts: "{{ events.m_1.payload.alerts }}"
+
+    - name: EDA | AlertManager | Handle OCPVirtLowDisk alert from OCP
+      condition: event.payload.status == "firing" and event.payload.commonLabels.source == "ocp" and event.payload.commonLabels.alertname == "OCPVirtVMNodePressure"
+      actions:
+        - debug:
+        - run_job_template:
+            name: "[EDA][Alertmanager][OCP] - Report OCPVirtVMNodePressure alert"
+            organization: Default
+            set_facts: true
+            job_args:
+              extra_vars:
+                alerts: "{{ event.payload.alerts }}"
+                alertStatus: "{{ event.payload.status }}"
+        - run_job_template:
+            name: "[EDA][Alertmanager][OCP] - Resolve OCPVirtVMNodePressure alert"
+            organization: Default
+            set_facts: true
+            job_args:
+              extra_vars:
+                alerts: "{{ event.payload.alerts }}"
+                alertStatus: "{{ event.payload.status }}"
+
+    - name: EDA | AlertManager | Handle OCPVirtVMNodePressure alert resolution from OCP
+      condition:
+        all:
+          - facts.incident_number is defined
+          - event.payload.status == "resolved" and event.payload.commonLabels.source == "ocp" and event.payload.commonLabels.alertname == "OCPVirtVMNodePressure"
+      actions:
+        - debug:
+        - run_job_template:
+            name: "[EDA][Alertmanager][OCP] - Report OCPVirtVMNodePressure alert"
+            organization: Default
+            set_facts: true
+            job_args:
+              extra_vars:
+                ticket_number: "{{ events.m_0.incident_number }}"
+                alertStatus: "{{ events.m_1.payload.status }}"
+                alerts: "{{ events.m_1.payload.alerts }}"

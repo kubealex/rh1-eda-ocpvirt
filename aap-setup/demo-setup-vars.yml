@@ -243,6 +243,21 @@ aap2_templates:
     aap2_template_credentials: "RH1 Demo - Linux Credentials"
     aap2_template_project: RH1 Demo
   # ------------------------------------
+  - aap2_template_name: "[EDA][Alertmanager][OCP] - Report OCPVirtVMNodePressure alert"
+    aap2_template_playbook: playbooks/alertmanager_ocp_ocpvirtvmnodepressure_report.yml
+    aap2_template_inventory: RH1 Demo - SCM Inventory
+    aap2_template_ask_vars: true
+    aap2_template_credentials: "RH1 Demo - Linux Credentials"
+    aap2_template_project: RH1 Demo
+  # ------------------------------------
+  - aap2_template_name: "[EDA][Alertmanager][OCP] - Resolve OCPVirtLowDisk alert"
+    aap2_template_playbook: playbooks/alertmanager_ocp_ocpvirtvmnodepressure.yml
+    aap2_template_inventory: RH1 Demo - SCM Inventory
+    aap2_template_ask_vars: true
+    aap2_template_credentials: "RH1 Demo - OCP Credentials"
+    aap2_template_project: RH1 Demo
+  # ------------------------------------
+
 
   # ------------------------------------
   - aap2_template_name: "[EDA][Dynatrace] Open SNOW incident for problem"
@@ -361,7 +376,7 @@ eda_activations:
     rulebook: eda-rulebook-alertmanager.yml
     project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
-    credentials: 
+    credentials:
       - "AAP2 Credentials"
 
   - name: eda-dynatrace
@@ -369,19 +384,19 @@ eda_activations:
     project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
     extra_vars: "dynatrace_api_url: {{ dynatrace_url }}\ndynatrace_api_token: {{ dynatrace_token }}"
-    credentials: 
+    credentials:
       - "AAP2 Credentials"
 
   - name: eda-insights
     rulebook: eda-rulebook-insights.yml
     project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
-    credentials: 
+    credentials:
       - "AAP2 Credentials"
 
   - name: eda-webhook
     rulebook: eda-rulebook-webhook.yml
     project_name: "RH1 Demo Project"
     decision_env: "kubealex-eda"
-    credentials: 
+    credentials:
       - "AAP2 Credentials"

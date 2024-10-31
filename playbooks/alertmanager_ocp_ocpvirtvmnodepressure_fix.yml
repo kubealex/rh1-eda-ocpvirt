@@ -1,0 +1,42 @@
+---
+- name: EDA | Alertmanager | OCP | Resolve CPU Pressure on node
+  hosts: "{{ target_hosts | default('rhel_demo_servers', true) }}"
+  module_defaults:
+    group/redhat.openshift.openshift:
+      host: "{{ ocp_api_url | default(lookup('env', 'K8S_AUTH_HOST'), true) }}"
+      username: "{{ ocp_admin_username | default(lookup('env', 'K8S_AUTH_USERNAME'), true) }}"
+      password: "{{ ocp_admin_password | default(lookup('env', 'K8S_AUTH_PASSWORD'), true) }}"
+      validate_certs: "{{ ocp_api_verify_tls | default(false, true) }}"
+
+  tasks:
+    - name: OCP | Login to OCP cluster
+      block:
+        - name: OCP | Login into OpenShift Container Platform cluster
+          redhat.openshift.openshift_auth:
+          register: _openshift_auth_results
+
+        - name: Retrieving OCP api_key
+          ansible.builtin.set_fact:
+            ocp_api_key: "{{ _openshift_auth_results.openshift_auth.api_key }}"
+
+    - name: OCP | Create the PrometheusRule for the VM disk monitoring
+      redhat.openshift.k8s:
+        api_key: "{{ ocp_api_key }}"
+        namespace: "{{ item.labels.namespace }}"
+        definition:
+          apiVersion: kubevirt.io/v1
+          kind: VirtualMachineInstanceMigration
+          metadata:
+            name: vm-migration-cpu-pressure
+          spec:
+            vmiName: "{{ item.labels.created_by_name }}"
+        wait: true
+        apply: true
+      loop: "{{ alerts }}"
+
+        apiVersion: kubevirt.io/v1
+kind: VirtualMachineInstanceMigration
+metadata:
+  name: <migration_name>
+spec:
+  vmiName: <vm_name>

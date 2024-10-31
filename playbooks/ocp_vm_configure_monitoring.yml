@@ -92,10 +92,10 @@
     - name: OCP | Create the PrometheusRule for the Cluster CPU monitoring for migration
       redhat.openshift.k8s:
         api_key: "{{ ocp_api_key }}"
-        namespace: "{{ vm_namespace }}"
+        namespace: "openshift-monitoring"
         definition:
-          apiVersion: monitoring.coreos.com/v1
-          kind: PrometheusRule
+          apiVersion: monitoring.openshift.io/v1
+          kind: AlertingRule
           metadata:
             labels:
               test: ocpvirt
@@ -105,12 +105,12 @@
               - name: ocpvirt.rules
                 rules:
                   - alert: OCPVirtVMNodePressure
-                    expr: round((kube_pod_info{created_by_kind='VirtualMachineInstance'} * on(pod) group_left(nodename) node_uname_info) * on(node) group_left(nodename) label_replace(instance:node_cpu_utilisation:rate1m, "node", "$1", "instance", "(.*)"), 0.1) > 0.7
-                    for: 5m
+                    expr: label_replace(instance:node_cpu_utilisation:rate1m, "node", "$1", "instance", "(.*)") * on (node) group_right (nodename) kube_pod_info{created_by_kind="VirtualMachineInstance",namespace="rh1-demo"} > 0.9
+                    for: 1m
                     labels:
                       severity: critical
                       source: ocp
                     annotations:
-                      message: !unsafe "Filesystem {{ $labels.device }} on {{ $labels.nodename }} is full"
+                      message: !unsafe "Node {{ $labels.node }} is under CPU pressure, hosting the {{ $labels.created_by_name }} VM"
         wait: true
         apply: true
