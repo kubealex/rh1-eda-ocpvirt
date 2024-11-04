@@ -35,10 +35,20 @@
             data:
               incident_number: "{{ _incident.results[0].record.number }}"
 
-        - name: EDA | Alertmanager | OCP | Remediating issue to resolve the alert
+        - name: EDA | Alertmanager | OCP | Initiating migration to avoid disruption
           ansible.builtin.debug:
             msg: Trying to solve {{ item.labels.alertname }}
           loop: "{{ alerts }}"
+
+        - name: EDA | Alertmanager | OCP | Change ITSM ticket status
+          servicenow.itsm.incident:
+            instance:
+              host: "{{ snow_instance }}"
+              username: "{{ snow_username }}"
+              password: "{{ snow_password }}"
+            caller: "admin"
+            number: "{{ ticket_number }}"
+            state: in_progress
 
     - name: EDA | Alertmanager | OCP | Notify resolution
       when: alertStatus == "resolved"
