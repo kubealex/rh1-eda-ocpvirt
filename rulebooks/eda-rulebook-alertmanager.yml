@@ -63,15 +63,6 @@
               extra_vars:
                 alerts: "{{ event.payload.alerts }}"
                 alertStatus: "{{ event.payload.status }}"
-        - run_job_template:
-            name: "[EDA][Alertmanager][OCP] - Test"
-            organization: Default
-            set_facts: true
-            job_args:
-              extra_vars:
-                alerts: "{{ event.payload.alerts }}"
-                alertStatus: "{{ event.payload.status }}"
-                incident_number: "{{ facts.incident_number }}"
 
     # - name: EDA | AlertManager | Handle OCPVirtVMNodePressure alert resolution from OCP
     #   condition:
