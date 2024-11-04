@@ -47,7 +47,7 @@
               username: "{{ snow_username }}"
               password: "{{ snow_password }}"
             caller: "admin"
-            number: "{{ ticket_number }}"
+            number: "{{ incident_number }}"
             state: in_progress
 
     - name: EDA | Alertmanager | OCP | Notify resolution
