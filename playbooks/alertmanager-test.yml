@@ -1,0 +1,7 @@
+---
+- name: EDA | Alertmanager | OCP | Playbook reacting to AlertManager Event with ITSM ticket
+  hosts: localhost
+  tasks:
+    - name: test
+      ansible.builtin.debug:
+        msg: "incident {{ incident_number }} updated
