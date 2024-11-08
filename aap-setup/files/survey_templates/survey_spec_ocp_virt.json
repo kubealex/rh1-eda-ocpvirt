@@ -21,18 +21,6 @@
       "default": "rh1-demo"
     },
     {
-      "question_name": "VM Template to use",
-      "question_description": "VM template to use",
-      "type": "multiplechoice",
-      "min": 0,
-      "max": 1024,
-      "choices": ["rhel9-server", "windows2k19-server"],
-      "required": true,
-      "variable": "ocp_vm_template",
-      "index": 2,
-      "default": "rhel9-server"
-    },
-    {
       "question_name": "CPU count for VM",
       "question_description": "CPU count for VM",
       "required": true,
@@ -58,15 +46,6 @@
       "variable": "ocp_webhook_url",
       "index": 5,
       "default": "http://aap.rh-lab.labs:5000/endpoint"
-    },
-    {
-      "question_name": "URL to QCOW image",
-      "question_description": "URL for RHEL image",
-      "required": true,
-      "type": "text",
-      "variable": "ocp_rhel_image",
-      "index": 6,
-      "default": "URL_TO_QCOW_IMAGE"
     }
   ]
 }
