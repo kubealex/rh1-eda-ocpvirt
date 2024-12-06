@@ -86,6 +86,35 @@ sudo fallocate -l 150G /myfilesystem/test
 
 The alert will be visible in the "Observe" section in OCP and in 5 minutes without resolution, it will become "Firing", and it will be sent to Event Driven Automation Controller for further processing.
 
+#### Trigger OCPVirtVMNodePressure Alert
+
+During the VM deploy, we also deployed a ServiceMonitor that allows Prometheus deployed on OCP to scrape metrics from the VM's node-exporter.
+Along with that we also defined a PrometheusRule to generate an alert based on the above metrics, when CPU levels of the node hosting a VM become critical, to make sure that the VM is then live-migrated to another node.
+
+To trigger the alert, it is sufficient to spin-up a pod who starts raising the CPU level intensively.
+
+A pod definition example could be as follows:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: saturate-cpu
+  namespace: rh1-demo
+spec:
+  containers:
+  - name: saturate-cpu-container
+    image: ubi9
+    command: ["/bin/sh", "-c"]
+    args:
+      -openssl speed -multi $(grep -c ^processor /proc/cpuinfo)
+    resources:
+      limits:
+        cpu: "6"
+```
+
+The alert will be visible in the "Observe" section in OCP and in 5 minutes without resolution, it will become "Firing", and it will be sent to Event Driven Automation Controller for further processing.
+
 #### Report the incident on ITSM and resolve it
 
 Once EDA has been notified, it will trigger a job template execution to report the incident on the ITSM platform, creating a ticket and proceed with the resolution.
