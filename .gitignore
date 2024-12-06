@@ -1,3 +1,4 @@
 internal-vars.yml
 aap-setup/execution-environment/context/**
 .vscode
+ansible-navigator.log
