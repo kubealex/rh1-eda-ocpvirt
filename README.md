@@ -107,7 +107,7 @@ spec:
     image: ubi9
     command: ["/bin/sh", "-c"]
     args:
-      -openssl speed -multi $(grep -c ^processor /proc/cpuinfo)
+      - openssl speed -multi $(grep -c ^processor /proc/cpuinfo)
     resources:
       limits:
         cpu: "6"
