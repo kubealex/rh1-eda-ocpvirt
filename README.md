@@ -1,6 +1,6 @@
-# DevConf.cz - An unfortunate series of (Ansible) events
+# Red Hat One - Automating the Unfortunate: Event-Driven Ansible for OpenShift Virtualization
 
-Welcome to the repository for the session "DevConf.cz - An unfortunate series of (Ansible) events"
+Welcome to the repository for the session "Red Hat One - Automating the Unfortunate: Event-Driven Ansible for OpenShift Virtualization"
 
 In this repository you will find the instructions and configuration to replicate the use cases in your environment.
 
@@ -33,17 +33,17 @@ The configuration will create a template, **[EDA][OCP] Create VM and configure m
 
 You need to fill _Provisioning Webhook_ to match your environment configuration when running it from the AAP Controller Console.
 
-The use case articulates in three phases:
+The use case is articulated in three phases:
 
 #### VM Creation
 
-The VM is created instanciating a Virtual Machine template in OCP, the first configuration steps are taken using cloud-init and at the end of the configuration the _Provisioning Webhook_ is called to trigger EDA and start the day 2 operations.
+The VM is created by instantiating a Virtual Machine template in OCP, the first configuration steps are taken using cloud-init. At the end of the configuration the _Provisioning Webhook_ is called to trigger EDA and start the day 2 operations.
 
 #### Day 2 Operations
 
 Once the VM provisioning webhook has been called, the VM is:
 
-- registered on the Red Hat Network to attach a subscriptio
+- registered on the Red Hat Network to attach a subscription
 - configured to export metrics using node-exporter for Prometheus
 - attached to Red Hat Insights for CVE detection and remediation
 
@@ -64,7 +64,7 @@ The automation that is triggered will take care of:
 This use case will focus on automatic remediation of problems detected on a Virtual Machine deployed on Openshift virtualization.
 
 In this specific case, we will simulate a filesystem available space exhaustion by allocating more space than available and this event will be captured by the AlertManager rule we deploy along with the VM.
-It will report the issue as critical and generate the OCPVirtLowDisk alert that will be sento to the listener on the AlertManager rulebook activation, that will take care of:
+It will report the issue as critical and generate the OCPVirtLowDisk alert that will be sent to the listener on the AlertManager rulebook activation, which will take care of:
 
 - React to the OCPVirtLowDisk alert coming from OCP
 - Raise a ServiceNow incident
@@ -75,8 +75,8 @@ Note that the use case will take some time to be executed, as the "Firing" event
 
 #### Trigger OCPVirtLowDisk Alert
 
-During the VM deploy, we also deployed a ServiceMonitor that allows Prometheus deployed on OCP to scrape metrics from the VM's node-exporter.
-Along with that we also defined a PrometheusRule to generate an alert based on the above metrics, when available disk space on a VM reaches a critical level.
+During the VM deployment, we also deployed a ServiceMonitor that allows Prometheus deployed on OCP to scrape metrics from the VM's node-exporter.
+We also defined a PrometheusRule to generate an alert based on the above metrics, when available disk space on a VM reaches a critical level.
 
 To trigger the alert, it is sufficient to generate a disk saturation. To do this, SSH in the newly created VM and run:
 
@@ -131,11 +131,11 @@ THe Dynatrace agent will monitor the VM we created and we will simulate a CPU sa
 We will simulate the CPU saturation VM event in the VM that is now running in OCP Virtualization, where we previously installed the Dynatrace agent.
 When the CPU usage reaches 100%, Dynatrace will generate a Problem reporting the issue, we will then use the API polling of the Event Driven Automation Source for Dynatrace to intercept the problem and react accordingly.
 
-To generate the issue we can use the template **[EDA][Dynatrace] Saturate VM CPU**, that will levarage openssl command to saturate the CPU of the VM.
+To generate the issue we can use the template **[EDA][Dynatrace] Saturate VM CPU**, which will leverage openssl command to saturate the CPU of the VM.
 
 #### Reaction to the anomaly
 
-After triggering the notification, EDA will anlalyze and enrich the information coming from Dynatrace, opening a Service Now request, resolve the issue and then proceed with the resolution of the Service Now ticket.
+After triggering the notification, EDA will analyze and enrich the information coming from Dynatrace, open a Service Now request, resolve the issue and then proceed with the resolution of the Service Now ticket.
 
 ## Configuration
 
@@ -155,7 +155,7 @@ You can use any alternative, like MetalLB operator, to assign the VM Service a f
 You will need:
 
 - Openshift Virtualization
-- Kubernetes NMState Operator - needed to use bridged network to reach the VMs
+- Kubernetes NMState Operator - needed to use a bridged network to reach the VMs
 
 #### Network Configuration
 
