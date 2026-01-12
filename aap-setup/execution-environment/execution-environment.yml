@@ -54,7 +54,7 @@ options:
   package_manager_path: /usr/bin/microdnf
 additional_build_steps:
   prepend_final:
-    - ENV PKGMGR_OPTS="--nodocs --setopt=install_weak_deps=0 --setopt=rhocp-4.16-for-rhel-9-x86_64-rpms.enabled=true"
+    - ENV PKGMGR_OPTS="--nodocs --setopt=install_weak_deps=0 --setopt=rhocp-4.20-for-rhel-9-x86_64-rpms.enabled=true"
   prepend_galaxy:
     - COPY _build/configs/ansible.cfg /home/runner/.ansible.cfg
   prepend_builder:
