@@ -59,4 +59,4 @@ additional_build_steps:
     - COPY _build/configs/ansible.cfg /home/runner/.ansible.cfg
   prepend_builder:
     - ENV PKGMGR_OPTS="--nodocs --setopt=install_weak_deps=0 --setopt=rhocp-4.20-for-rhel-9-x86_64-rpms.enabled=true"
-    - RUN microdnf install -y yum-utils && yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf -y install terraform && rpm --import https://packages.microsoft.com/keys/microsoft.asc && rpm -i https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm && microdnf -y install azure-cli
+    - RUN microdnf install -y yum-utils && yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf -y install terraform && rpm --import https://packages.microsoft.com/keys/microsoft.asc && rpm -i https://packages.microsoft.com/config/rhel/9/packages-microsoft-prod.rpm && microdnf -y install azure-cli
