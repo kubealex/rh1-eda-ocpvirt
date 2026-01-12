@@ -4,12 +4,12 @@ build_arg_defaults:
   ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '--pre'
 images:
   base_image:
-    name: "registry.redhat.io/ansible-automation-platform-25/ee-minimal-rhel9:latest"
+    name: "registry.redhat.io/ansible-automation-platform-26/ee-minimal-rhel9:latest"
 additional_build_files:
   - src: ansible.cfg
     dest: configs
-  - src: dynatrace-oneagent-1.1.0.tar.gz
-    dest: configs
+#  - src: dynatrace-oneagent-1.1.0.tar.gz
+#    dest: configs
 dependencies:
   ansible_core:
     package_pip: ansible-core
@@ -27,10 +27,10 @@ dependencies:
       - redhat.openshift
       - redhat.insights
       - servicenow.itsm
-      - name: /home/runner/dynatrace-oneagent-1.1.0.tar.gz
-        type: file
+      # - name: /home/runner/dynatrace-oneagent-1.1.0.tar.gz
+      #   type: file
 
-  python:   
+  python:
     - six
     - psutil
     - requests
@@ -57,7 +57,6 @@ additional_build_steps:
     - ENV PKGMGR_OPTS="--nodocs --setopt=install_weak_deps=0 --setopt=rhocp-4.16-for-rhel-9-x86_64-rpms.enabled=true"
   prepend_galaxy:
     - COPY _build/configs/ansible.cfg /home/runner/.ansible.cfg
-    - COPY _build/configs/dynatrace-oneagent-1.1.0.tar.gz /home/runner/dynatrace-oneagent-1.1.0.tar.gz
   prepend_builder:
-    - ENV PKGMGR_OPTS="--nodocs --setopt=install_weak_deps=0 --setopt=rhocp-4.16-for-rhel-9-x86_64-rpms.enabled=true"
+    - ENV PKGMGR_OPTS="--nodocs --setopt=install_weak_deps=0 --setopt=rhocp-4.20-for-rhel-9-x86_64-rpms.enabled=true"
     - RUN microdnf install -y yum-utils && yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && microdnf -y install terraform && rpm --import https://packages.microsoft.com/keys/microsoft.asc && rpm -i https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm && microdnf -y install azure-cli
