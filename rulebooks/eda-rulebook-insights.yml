@@ -2,7 +2,7 @@
 - name: EDA | Insights | Listen for events on a webhook
   hosts: localhost
   sources:
-    - redhatinsights.eda.insights:
+    - redhat.insights_eda.insights:
         host: 0.0.0.0
         port: 5002
         token: redhatinsightstoken
@@ -25,4 +25,3 @@
       condition: event.payload is defined
       actions:
         - debug:
-        
